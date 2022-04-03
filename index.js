@@ -16,6 +16,7 @@ var ext = "png" || "apng" || "avif" || "gif" || "jpeg" || "svg" || "webp" || "bp
 var video = "mp4" || "avi" || "mov" || "m4v";
 var image = "png" || "apng" || "avif" || "gif" || "jpeg" || "svg" || "webp" || "bpm"|| "ico" || "tiff" || "3fr" || "arw" || "cr2" || "crw" || "jpg" || "jpe" || "jfif";
 
+// and idk how to do if a link end with "?size=4096" or something like this 😢
 
 bot.on('message', message => {
     if (message.attachments.size > 0) {
