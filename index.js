@@ -41,16 +41,19 @@ bot.on('message', message => {
                 hostname: final[0],
                 port: 443,
                 path: final[1],
-                method: 'POST'
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Content-Length': final[2].length
+                }             
             };
 
             var req = https.request(options, function(response) {
-                /*response.on('data', function(body) {
-                        return resolve(body.toString());
+                response.on('data', function(body) {
+                        //console.log(`${body.toString()}\n${final[0]}\n${final[1]}\n${final[2]}`);
                     }).on('error', (e) => {
                         console.error(e);
                     });
-                });*/
             });
 
             req.write(final[2]);
