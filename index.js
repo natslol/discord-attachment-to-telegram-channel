@@ -1,9 +1,6 @@
 const Discord = require('discord.js'),
     bot = new Discord.Client(),
-    https = require('https'),
-    token = process.env.DISCORD_TOKEN,
-    telegram = process.env.TELEGRAM,
-    chatid = process.env.CHATID;
+    https = require('https');
 
 bot.on('ready', () => {
     console.log(`${bot.user.username} ready !`);
@@ -23,18 +20,18 @@ bot.on('message', message => {
             //indexOf can be used too "-1" = Not Found
             if(video.includes(attachmentURLSplit[attachmentURLSplit.length - 1])) {
                 final[0] = `api.telegram.org`;
-                final[1] = `/bot${telegram}/sendVideo`;
+                final[1] = `/bot${process.env.TELEGRAM}/sendVideo`;
                 final[2] = `chat_id=${chatid}&video=${attachmentURL}`;
             }
             else if(image.includes(attachmentURLSplit[attachmentURLSplit.length - 1])) {
                 final[0] = `api.telegram.org`;
-                final[1] = `/bot${telegram}/sendPhoto`;
-                final[2] = `chat_id=${chatid}&photo=${attachmentURL}`;
+                final[1] = `/bot${process.env.TELEGRAM}/sendPhoto`;
+                final[2] = `chat_id=${process.env.CHATID}&photo=${attachmentURL}`;
             }
             else {
                 final[0] = `api.telegram.org`;
-                final[1] = `/bot${telegram}/sendMessage`
-                final[2] = `chat_id=${chatid}&text=${attachmentURL}`;
+                final[1] = `/bot${process.env.TELEGRAM}/sendMessage`
+                final[2] = `chat_id=${process.env.CHATID}&text=${attachmentURL}`;
             }
 
             var options = {
@@ -68,4 +65,4 @@ bot.on('message', message => {
 
 });
 
-bot.login(token)
+bot.login(process.env.DISCORD_TOKEN)
